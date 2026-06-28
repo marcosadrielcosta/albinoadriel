@@ -540,16 +540,15 @@
     letter-spacing: 0.04em;
   }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 640px) {
-    /* hero */
-      .hero { padding: 1.5rem; min-height: unset; }
-    .hero-body {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto auto;
-      padding: 0.5rem 0 2rem;
-      gap: 0;
-    }
+@media (max-width: 640px) {
+  /* hero */
+  .hero { padding: 1.5rem; min-height: unset; }
+  .hero-body {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    padding: 2rem 0 2rem;
+    gap: 0;
+  }
     .hero-photo-wrap {
      display: flex;
      flex-direction: column;
