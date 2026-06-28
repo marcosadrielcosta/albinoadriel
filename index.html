@@ -538,50 +538,16 @@
     letter-spacing: 0.04em;
   }
 
-@media (max-width: 640px) {
-  .hero {
-    padding: 1.5rem;
-  }
-
-  /* 🔥 MUDANÇA PRINCIPAL: empilhar tudo */
-  .hero-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 2rem 0;
-    gap: 1.5rem;
-  }
-
-  /* 📸 FOTO VEM PRIMEIRO */
-  .hero-photo-wrap {
-    display: block;
-    width: 160px;
-    order: -1; /* garante que fica acima do texto */
-  }
-
-  .hero-photo-frame {
-    width: 160px;
-    height: 200px;
-  }
-
-  .hero-text {
-    max-width: 100%;
-  }
-
-  .hero-headline {
-    font-size: 2rem;
-  }
-
-  .hero-sub {
-    font-size: 14px;
-  }
-
-  .hero-footer {
-    gap: 1rem;
-    justify-content: center;
-  }
-}
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    /* hero */
+    .hero { padding: 1.5rem; }
+    .hero-body { grid-template-columns: 1fr; padding: 2rem 0; }
+    .hero-photo-wrap { display: none; }
+    .hero-headline { font-size: 2rem; }
+    .hero-sub { font-size: 14px; }
+    .hero-footer { gap: 1rem; }
+    .hero-tag { font-size: 11px; }
 
     /* sections */
     section { padding: 3.5rem 1.5rem; }
