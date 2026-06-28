@@ -538,22 +538,26 @@
     letter-spacing: 0.04em;
   }
 
-  /* ── RESPONSIVE ── */
 @media (max-width: 640px) {
-  .hero { 
-    padding: 1.5rem; 
+  .hero {
+    padding: 1.5rem;
   }
 
-  .hero-body { 
-    grid-template-columns: 1fr; 
-    padding: 2rem 0; 
+  /* 🔥 MUDANÇA PRINCIPAL: empilhar tudo */
+  .hero-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 0;
+    gap: 1.5rem;
   }
 
-  /* ✔️ FOTO agora aparece no mobile (versão reduzida) */
+  /* 📸 FOTO VEM PRIMEIRO */
   .hero-photo-wrap {
     display: block;
     width: 160px;
-    margin: 2rem auto 0;
+    order: -1; /* garante que fica acima do texto */
   }
 
   .hero-photo-frame {
@@ -561,20 +565,21 @@
     height: 200px;
   }
 
-  .hero-headline { 
-    font-size: 2rem; 
+  .hero-text {
+    max-width: 100%;
   }
 
-  .hero-sub { 
-    font-size: 14px; 
+  .hero-headline {
+    font-size: 2rem;
   }
 
-  .hero-footer { 
-    gap: 1rem; 
+  .hero-sub {
+    font-size: 14px;
   }
 
-  .hero-tag { 
-    font-size: 11px; 
+  .hero-footer {
+    gap: 1rem;
+    justify-content: center;
   }
 }
 
