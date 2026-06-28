@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adriel Albino · Psicólogo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --grid-bg:    #EDEAE3;
+    --grid-line:  #D4D0C8;
+    --cream:      #F4F1EA;
+    --cream-dark: #E2DDD4;
+    --moss:       #3D5238;
+    --moss-mid:   #4E6648;
+    --moss-light: #D6E0D2;
+    --ink:        #1A1A16;
+    --ink-mid:    #47443A;
+    --ink-muted:  #928E82;
+    --yellow:     #E2C84A;
+    --yellow-pale:#F7F0C8;
+    --yellow-text:#7A6510;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans:  'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--grid-bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* grid texture */
+  .grid-bg {
+    background-color: var(--grid-bg);
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .nav-name {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  .nav-name strong { display: block; font-weight: 700; }
+
+  .nav-right {
+    text-align: right;
+    font-size: 12px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+
+  .nav-right strong { display: block; font-weight: 500; color: var(--ink-mid); }
+
+  .hero-body {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    z-index: 2;
+    padding: 3rem 0;
+    max-width: 720px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-text { max-width: 460px; }
+
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--yellow-text);
+    margin-bottom: 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--yellow-pale);
+    padding: 4px 12px 4px 10px;
+    border-radius: 20px;
+    width: fit-content;
+  }
+
+  .eyebrow::before {
+    content: '';
+    display: block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--yellow);
+    flex-shrink: 0;
+  }
+
+  .hero-headline {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+
+  .hero-headline em {
+    font-style: italic;
+    color: var(--moss);
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--ink-mid);
+    line-height: 1.85;
+    margin-bottom: 2.5rem;
+    max-width: 420px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--yellow);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 13px 26px;
+    border-radius: 40px;
+    transition: background 0.2s, transform 0.15s;
+    width: fit-content;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-cta:hover { background: var(--moss); color: var(--cream); transform: translateY(-1px); }
+
+  /* foto hero */
+  .hero-photo-wrap {
+    position: relative;
+    width: 220px;
+    flex-shrink: 0;
+  }
+
+  .hero-photo-frame {
+    width: 220px;
+    height: 280px;
+    border-radius: 160px 160px 120px 120px;
+    background: var(--cream-dark);
+    overflow: hidden;
+    border: 3px solid var(--cream-border);
+    position: relative;
+    box-shadow: 6px 6px 0 var(--moss);
+  }
+
+  .hero-photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .hero-photo-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: 28px;
+    right: -8px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--yellow);
+  }
+
+  .photo-caption {
+    margin-top: 8px;
+    font-size: 10px;
+    color: var(--ink-muted);
+    letter-spacing: 0.06em;
+    text-align: center;
+  }
+
+  .photo-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 8px; color: var(--ink-muted);
+  }
+
+  .photo-placeholder svg { opacity: 0.3; }
+  .photo-placeholder span { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.45; }
+
+  .hero-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--grid-line);
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-tag {
+    font-size: 11px;
+    color: var(--ink-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .hero-tag span { color: var(--ink-mid); }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 720px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    display: block;
+    height: 1px; width: 36px;
+    background: var(--moss-light);
+  }
+
+  /* ── SOBRE ── */
+  .sobre { background: var(--cream); }
+
+  .sobre-grid {
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .sobre-text {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+    line-height: 1.65;
+    color: var(--ink);
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
+
+  .sobre-body {
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.9;
+  }
+
+  .sobre-photo {
+    width: 100%;
+    aspect-ratio: 3/4;
+    border-radius: 4px;
+    background: var(--cream-dark);
+    overflow: hidden;
+    border: 2px solid var(--cream-dark);
+    box-shadow: 5px 5px 0 var(--moss-light);
+    position: sticky;
+    top: 2rem;
+  }
+
+  .sobre-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* ── COMO TRABALHO ── */
+  .processo { background: var(--grid-bg); }
+  .processo.grid-bg { background-size: 28px 28px; }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--cream-dark);
+    border: 1px solid var(--cream-dark);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 2.5rem;
+  }
+
+  .card {
+    background: var(--cream);
+    padding: 2rem 1.5rem;
+    transition: background 0.2s;
+  }
+
+  .card:hover { background: var(--yellow-pale); }
+
+  .card-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.8rem;
+    color: var(--moss);
+    opacity: 0.4;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .card-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 0.5rem; }
+  .card-body { font-size: 13px; color: var(--ink-mid); line-height: 1.75; }
+
+  /* ── CONVERSA GRATUITA ── */
+  .conversa {
+    background: var(--moss);
+    padding: 5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .conversa::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    background: var(--moss-mid);
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .conversa .section-label { color: var(--yellow); }
+  .conversa .section-label::after { background: var(--moss-mid); }
+
+  .conversa-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .conversa-headline {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+
+  .conversa-headline em { font-style: italic; color: var(--yellow); }
+
+  .conversa-body {
+    font-size: 14px;
+    color: var(--moss-light);
+    line-height: 1.85;
+    max-width: 420px;
+  }
+
+  .conversa-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--yellow);
+    color: var(--ink);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    transform: rotate(-1deg);
+    display: inline-block;
+  }
+
+  .conversa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--cream);
+    color: var(--moss);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 40px;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+    margin-top: 1.75rem;
+    display: inline-flex;
+  }
+
+  .conversa-btn:hover { background: var(--yellow); transform: translateY(-1px); }
+
+  /* ── FORMAÇÃO ── */
+  .formacao { background: var(--cream); }
+
+  .timeline { margin-top: 2.5rem; }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--cream-dark);
+    margin-bottom: 2rem;
+  }
+
+  .timeline-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .timeline-year {
+    font-size: 10px;
+    color: var(--moss);
+    padding: 3px 8px;
+    border-radius: 2px;
+    background: var(--moss-light);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    height: fit-content;
+    text-align: center;
+  }
+
+  .timeline-title { font-size: 15px; font-weight: 400; color: var(--ink); margin-bottom: 3px; }
+  .timeline-local { font-size: 12px; color: var(--ink-muted); }
+
+  /* ── CTA FINAL ── */
+  .cta-section {
+    background: var(--ink);
+    text-align: center;
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    bottom: -120px; left: 50%;
+    transform: translateX(-50%);
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: var(--moss);
+    opacity: 0.2;
+    pointer-events: none;
+  }
+
+  .cta-section .section-label {
+    color: var(--yellow);
+    justify-content: center;
+  }
+
+  .cta-section .section-label::after { display: none; }
+
+  .cta-headline {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 400;
+    line-height: 1.25;
+    max-width: 500px;
+    margin: 1rem auto 2.5rem;
+    color: var(--cream);
+  }
+
+  .cta-headline em { color: var(--yellow); font-style: italic; }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--yellow);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 16px 36px;
+    border-radius: 40px;
+    letter-spacing: 0.03em;
+    transition: opacity 0.2s, transform 0.15s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  .cta-note {
+    margin-top: 1.5rem;
+    font-size: 11px;
+    color: var(--ink-muted);
+    letter-spacing: 0.06em;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid #2a2820;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--ink-muted);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    /* hero */
+    .hero { padding: 1.5rem; }
+    .hero-body { grid-template-columns: 1fr; padding: 2rem 0; }
+    .hero-photo-wrap { display: none; }
+    .hero-headline { font-size: 2rem; }
+    .hero-sub { font-size: 14px; }
+    .hero-footer { gap: 1rem; }
+    .hero-tag { font-size: 11px; }
+
+    /* sections */
+    section { padding: 3.5rem 1.5rem; }
+    .section-inner { max-width: 100%; }
+
+    /* sobre */
+    .sobre-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .sobre-photo { position: static; aspect-ratio: 4/3; }
+    .sobre-text { font-size: 1.15rem; }
+
+    /* cards */
+    .cards { grid-template-columns: 1fr; }
+
+    /* conversa */
+    .conversa { padding: 3.5rem 1.5rem; }
+    .conversa-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .conversa-inner > div:last-child { display: none; }
+    .conversa-headline { font-size: 1.6rem; }
+
+    /* formação */
+    .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+
+    /* cta */
+    .cta-section { padding: 4rem 1.5rem; }
+    .cta-headline { font-size: 1.8rem; }
+    .cta-btn { width: 100%; justify-content: center; }
+
+    /* footer */
+    footer { flex-direction: column; text-align: center; gap: 0.25rem; }
+  }
+
+  @media (max-width: 400px) {
+    .hero-headline { font-size: 1.75rem; }
+    .nav-name { font-size: 12px; }
+    .nav-right { font-size: 11px; }
+    .hero-cta { width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero grid-bg">
+  <nav class="hero-nav">
+    <div class="nav-name">
+      adriel albino<br>
+      <strong>psicólogo</strong>
+    </div>
+    <div class="nav-right">
+      <strong>CRP XX/XXXXX</strong>
+      Gestalt-terapia
+    </div>
+  </nav>
+
+  <div class="hero-body">
+    <div class="hero-text">
+      <p class="eyebrow">Psicoterapia online</p>
+      <h1 class="hero-headline">
+        Compreenda de onde você veio<br>
+        para escolher <em>onde quer chegar.</em>
+      </h1>
+      <p class="hero-sub">
+        Um espaço para compreender sua trajetória, perceber padrões e construir novas formas de existir — a partir de quem você realmente é.
+      </p>
+      <a href="https://wa.me/message/xxxxx" class="hero-cta">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Agende sua sessão
+      </a>
+    </div>
+
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-frame">
+        <div class="photo-placeholder">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <span>sua foto aqui</span>
+        </div>
+      </div>
+      <p class="photo-caption">(01)</p>
+    </div>
+  </div>
+
+  <div class="hero-footer">
+    <span class="hero-tag">Abordagem <span>Gestalt-terapia</span></span>
+    <span class="hero-tag">Temas <span>História de vida · Autoconhecimento · Autenticidade</span></span>
+    <span class="hero-tag">Modalidade <span>Online</span></span>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre">
+  <div class="section-inner">
+    <p class="section-label">Sobre</p>
+    <div class="sobre-grid">
+      <div>
+        <p class="sobre-text">
+          Acredito que a nossa história não nos prende — ela nos explica. E é a partir dessa compreensão que novas possibilidades podem nascer.
+        </p>
+        <p class="sobre-body">
+          Sou psicólogo com formação em Gestalt-terapia, uma abordagem que trabalha com a experiência concreta da pessoa: o que ela sente, como ela existe no mundo, e quais padrões — muitas vezes construídos lá atrás — ainda organizam o presente.<br><br>
+          Meu trabalho é criar um espaço seguro para que você possa se perceber com mais clareza e, a partir daí, escolher com mais liberdade.
+        </p>
+      </div>
+      <div class="sobre-photo">
+        <div class="photo-placeholder" style="height:100%; min-height:300px;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <span>foto ambiente</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO TRABALHO -->
+<section class="processo grid-bg">
+  <div class="section-inner">
+    <p class="section-label">Como trabalho</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-num">01</div>
+        <div class="card-title">História de vida</div>
+        <div class="card-body">Entendo como sua trajetória construiu a forma como você existe hoje — sem ficar preso no passado.</div>
+      </div>
+      <div class="card">
+        <div class="card-num">02</div>
+        <div class="card-title">Autoconhecimento</div>
+        <div class="card-body">Processo de awareness e reflexão para que você perceba padrões e expanda sua visão sobre si mesmo.</div>
+      </div>
+      <div class="card">
+        <div class="card-num">03</div>
+        <div class="card-title">Autenticidade</div>
+        <div class="card-body">O que pode nascer quando você começa a se perceber além dos ajustamentos que aprendeu ao longo da vida.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONVERSA GRATUITA -->
+<section class="conversa">
+  <div class="conversa-inner">
+    <div>
+      <p class="section-label" style="color:var(--yellow); margin-bottom:1.25rem;">
+        Está com dúvidas?
+        <span style="display:inline-block; height:1px; width:36px; background:var(--moss-mid); vertical-align:middle; margin-left:10px;"></span>
+      </p>
+      <div class="conversa-tag">sem custo</div>
+      <h2 class="conversa-headline">
+        Agende uma <em>conversa comigo</em><br>antes de começar.
+      </h2>
+      <p class="conversa-body">
+        Se você ainda tem dúvidas sobre como funciona a terapia, o que esperar do processo ou se essa abordagem faz sentido pra você — me chama. Faço uma conversa inicial sem custo para que você possa entender melhor como será o nosso trabalho juntos.
+      </p>
+      <a href="https://wa.me/message/xxxxx" class="conversa-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Quero conversar
+      </a>
+    </div>
+    <div style="flex-shrink:0; width:200px; position:relative;">
+      <div style="width:200px; height:260px; border-radius:4px; background:var(--moss-mid); overflow:hidden; border:2px solid var(--moss-light); box-shadow:5px 5px 0 rgba(0,0,0,0.15);">
+        <div class="photo-placeholder" style="height:100%;">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <span style="color:var(--moss-light);">foto</span>
+        </div>
+      </div>
+      <p style="font-size:10px; color:var(--moss-light); text-align:center; margin-top:8px; letter-spacing:0.06em;">(02)</p>
+    </div>
+  </div>
+</section>
+
+<!-- FORMAÇÃO -->
+<section class="formacao">
+  <div class="section-inner">
+    <p class="section-label">Formação</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">20XX</div>
+        <div>
+          <div class="timeline-title">Formação em Gestalt-terapia</div>
+          <div class="timeline-local">Instituto · Cidade</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">20XX</div>
+        <div>
+          <div class="timeline-title">Graduação em Psicologia</div>
+          <div class="timeline-local">Universidade · Cidade</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">Em curso</div>
+        <div>
+          <div class="timeline-title">Especialização ou formação complementar</div>
+          <div class="timeline-local">Instituto · Cidade</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <p class="section-label">Próximo passo</p>
+  <h2 class="cta-headline">
+    Pronto para entender<br><em>o que te trouxe até aqui?</em>
+  </h2>
+  <a href="https://wa.me/message/xxxxx" class="cta-btn">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    Agende sua sessão
+  </a>
+  <p class="cta-note">Atendimento online · Via WhatsApp</p>
+</section>
+
+<footer>
+  <span>adriel albino · psicólogo · CRP XX/XXXXX</span>
+  <span>Atendimento online</span>
+</footer>
+
+</body>
+</html>
