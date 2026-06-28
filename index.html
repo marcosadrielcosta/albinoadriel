@@ -542,8 +542,28 @@
   @media (max-width: 640px) {
     /* hero */
     .hero { padding: 1.5rem; }
-    .hero-body { grid-template-columns: 1fr; padding: 2rem 0; }
-    .hero-photo-wrap { display: none; }
+    .hero-body {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      padding: 1.5rem 0 2rem;
+      gap: 1.75rem;
+    }
+    .hero-photo-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      order: -1;
+      width: 100%;
+    }
+    .hero-photo-frame {
+      width: 160px;
+      height: 200px;
+      border-radius: 120px 120px 90px 90px;
+      box-shadow: 4px 4px 0 var(--moss);
+    }
+    .hero-photo-wrap::after {
+      right: calc(50% - 88px);
+    }
     .hero-headline { font-size: 2rem; }
     .hero-sub { font-size: 14px; }
     .hero-footer { gap: 1rem; }
@@ -585,6 +605,28 @@
     .nav-right { font-size: 11px; }
     .hero-cta { width: 100%; justify-content: center; }
   }
+
+  /* ── SCROLL REVEAL ── */
+  @media (prefers-reduced-motion: no-preference) {
+    [data-reveal] {
+      opacity: 0;
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    [data-reveal="up"]    { transform: translateY(28px); }
+    [data-reveal="left"]  { transform: translateX(-28px); }
+    [data-reveal="right"] { transform: translateX(28px); }
+    [data-reveal="scale"] { transform: scale(0.94); }
+
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    [data-delay="1"] { transition-delay: 0.1s; }
+    [data-delay="2"] { transition-delay: 0.2s; }
+    [data-delay="3"] { transition-delay: 0.32s; }
+    [data-delay="4"] { transition-delay: 0.44s; }
+  }
 </style>
 </head>
 <body>
@@ -604,21 +646,21 @@
 
   <div class="hero-body">
     <div class="hero-text">
-      <p class="eyebrow">Psicoterapia online</p>
-      <h1 class="hero-headline">
+      <p class="eyebrow" data-reveal="up">Psicoterapia online</p>
+      <h1 class="hero-headline" data-reveal="up" data-delay="1">
         Compreenda de onde você veio<br>
         para escolher <em>onde quer chegar.</em>
       </h1>
-      <p class="hero-sub">
+      <p class="hero-sub" data-reveal="up" data-delay="2">
         Um espaço para compreender sua trajetória, perceber padrões e construir novas formas de existir — a partir de quem você realmente é.
       </p>
-      <a href="https://wa.me/message/xxxxx" class="hero-cta">
+      <a href="https://wa.me/message/xxxxx" class="hero-cta" data-reveal="up" data-delay="3">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         Agende sua sessão
       </a>
     </div>
 
-    <div class="hero-photo-wrap">
+    <div class="hero-photo-wrap" data-reveal="scale" data-delay="2">
       <div class="hero-photo-frame">
         <div class="photo-placeholder">
           <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
@@ -630,27 +672,27 @@
   </div>
 
   <div class="hero-footer">
-    <span class="hero-tag">Abordagem <span>Gestalt-terapia</span></span>
-    <span class="hero-tag">Temas <span>História de vida · Autoconhecimento · Autenticidade</span></span>
-    <span class="hero-tag">Modalidade <span>Online</span></span>
+    <span class="hero-tag" data-reveal="up" data-delay="1">Abordagem <span>Gestalt-terapia</span></span>
+    <span class="hero-tag" data-reveal="up" data-delay="2">Temas <span>História de vida · Autoconhecimento · Autenticidade</span></span>
+    <span class="hero-tag" data-reveal="up" data-delay="3">Modalidade <span>Online</span></span>
   </div>
 </section>
 
 <!-- SOBRE -->
 <section class="sobre">
   <div class="section-inner">
-    <p class="section-label">Sobre</p>
+    <p class="section-label" data-reveal="up">Sobre</p>
     <div class="sobre-grid">
       <div>
-        <p class="sobre-text">
+        <p class="sobre-text" data-reveal="up" data-delay="1">
           Acredito que a nossa história não nos prende — ela nos explica. E é a partir dessa compreensão que novas possibilidades podem nascer.
         </p>
-        <p class="sobre-body">
+        <p class="sobre-body" data-reveal="up" data-delay="2">
           Sou psicólogo com formação em Gestalt-terapia, uma abordagem que trabalha com a experiência concreta da pessoa: o que ela sente, como ela existe no mundo, e quais padrões — muitas vezes construídos lá atrás — ainda organizam o presente.<br><br>
           Meu trabalho é criar um espaço seguro para que você possa se perceber com mais clareza e, a partir daí, escolher com mais liberdade.
         </p>
       </div>
-      <div class="sobre-photo">
+      <div class="sobre-photo" data-reveal="right" data-delay="1">
         <div class="photo-placeholder" style="height:100%; min-height:300px;">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
           <span>foto ambiente</span>
@@ -663,19 +705,19 @@
 <!-- COMO TRABALHO -->
 <section class="processo grid-bg">
   <div class="section-inner">
-    <p class="section-label">Como trabalho</p>
+    <p class="section-label" data-reveal="up">Como trabalho</p>
     <div class="cards">
-      <div class="card">
+      <div class="card" data-reveal="up" data-delay="1">
         <div class="card-num">01</div>
         <div class="card-title">História de vida</div>
         <div class="card-body">Entendo como sua trajetória construiu a forma como você existe hoje — sem ficar preso no passado.</div>
       </div>
-      <div class="card">
+      <div class="card" data-reveal="up" data-delay="2">
         <div class="card-num">02</div>
         <div class="card-title">Autoconhecimento</div>
         <div class="card-body">Processo de awareness e reflexão para que você perceba padrões e expanda sua visão sobre si mesmo.</div>
       </div>
-      <div class="card">
+      <div class="card" data-reveal="up" data-delay="3">
         <div class="card-num">03</div>
         <div class="card-title">Autenticidade</div>
         <div class="card-body">O que pode nascer quando você começa a se perceber além dos ajustamentos que aprendeu ao longo da vida.</div>
@@ -692,19 +734,19 @@
         Está com dúvidas?
         <span style="display:inline-block; height:1px; width:36px; background:var(--moss-mid); vertical-align:middle; margin-left:10px;"></span>
       </p>
-      <div class="conversa-tag">sem custo</div>
-      <h2 class="conversa-headline">
+      <div class="conversa-tag" data-reveal="up">sem custo</div>
+      <h2 class="conversa-headline" data-reveal="up" data-delay="1">
         Agende uma <em>conversa comigo</em><br>antes de começar.
       </h2>
-      <p class="conversa-body">
+      <p class="conversa-body" data-reveal="up" data-delay="2">
         Se você ainda tem dúvidas sobre como funciona a terapia, o que esperar do processo ou se essa abordagem faz sentido pra você — me chama. Faço uma conversa inicial sem custo para que você possa entender melhor como será o nosso trabalho juntos.
       </p>
-      <a href="https://wa.me/message/xxxxx" class="conversa-btn">
+      <a href="https://wa.me/message/xxxxx" class="conversa-btn" data-reveal="up" data-delay="3">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         Quero conversar
       </a>
     </div>
-    <div style="flex-shrink:0; width:200px; position:relative;">
+    <div style="flex-shrink:0; width:200px; position:relative;" data-reveal="scale" data-delay="2">
       <div style="width:200px; height:260px; border-radius:4px; background:var(--moss-mid); overflow:hidden; border:2px solid var(--moss-light); box-shadow:5px 5px 0 rgba(0,0,0,0.15);">
         <div class="photo-placeholder" style="height:100%;">
           <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
@@ -719,23 +761,23 @@
 <!-- FORMAÇÃO -->
 <section class="formacao">
   <div class="section-inner">
-    <p class="section-label">Formação</p>
+    <p class="section-label" data-reveal="up">Formação</p>
     <div class="timeline">
-      <div class="timeline-item">
+      <div class="timeline-item" data-reveal="up" data-delay="1">
         <div class="timeline-year">20XX</div>
         <div>
           <div class="timeline-title">Formação em Gestalt-terapia</div>
           <div class="timeline-local">Instituto · Cidade</div>
         </div>
       </div>
-      <div class="timeline-item">
+      <div class="timeline-item" data-reveal="up" data-delay="2">
         <div class="timeline-year">20XX</div>
         <div>
           <div class="timeline-title">Graduação em Psicologia</div>
           <div class="timeline-local">Universidade · Cidade</div>
         </div>
       </div>
-      <div class="timeline-item">
+      <div class="timeline-item" data-reveal="up" data-delay="3">
         <div class="timeline-year">Em curso</div>
         <div>
           <div class="timeline-title">Especialização ou formação complementar</div>
@@ -748,15 +790,15 @@
 
 <!-- CTA FINAL -->
 <section class="cta-section">
-  <p class="section-label">Próximo passo</p>
-  <h2 class="cta-headline">
+  <p class="section-label" data-reveal="up">Próximo passo</p>
+  <h2 class="cta-headline" data-reveal="up" data-delay="1">
     Pronto para entender<br><em>o que te trouxe até aqui?</em>
   </h2>
-  <a href="https://wa.me/message/xxxxx" class="cta-btn">
+  <a href="https://wa.me/message/xxxxx" class="cta-btn" data-reveal="up" data-delay="2">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
     Agende sua sessão
   </a>
-  <p class="cta-note">Atendimento online · Via WhatsApp</p>
+  <p class="cta-note" data-reveal="up" data-delay="3">Atendimento online · Via WhatsApp</p>
 </section>
 
 <footer>
@@ -764,5 +806,32 @@
   <span>Atendimento online</span>
 </footer>
 
+<script>
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    // Elementos do hero ficam visíveis imediatamente
+    document.querySelectorAll('.hero [data-reveal]').forEach((el) => {
+      el.classList.add('is-visible');
+    });
+
+    // Demais elementos são observados ao rolar
+    document.querySelectorAll('[data-reveal]:not(.hero [data-reveal])').forEach((el) => {
+      observer.observe(el);
+    });
+  })();
+</script>
 </body>
 </html>
